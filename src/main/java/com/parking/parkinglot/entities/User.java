@@ -16,14 +16,14 @@ public class User {
 
   private String password;
 
-  private List<Cars> cars = new ArrayList<>();
+  private List<Car> cars = new ArrayList<>();
 
   @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
-  public List<Cars> getCars() {
+  public List<Car> getCars() {
     return cars;
   }
 
-  public void setCars(List<Cars> cars) {
+  public void setCars(List<Car> cars) {
     this.cars = cars;
   }
 
