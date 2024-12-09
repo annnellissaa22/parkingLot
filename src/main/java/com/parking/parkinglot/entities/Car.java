@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "cars")
 public class Car {
+    @GeneratedValue
     @Id
     @Column(name = "id", nullable = false)
     private Long id;

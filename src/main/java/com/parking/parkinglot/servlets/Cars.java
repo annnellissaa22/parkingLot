@@ -15,6 +15,7 @@ public class Cars extends HttpServlet {
 
     @Inject
     CarsBean carsBean;
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse
             response) throws ServletException, IOException {
