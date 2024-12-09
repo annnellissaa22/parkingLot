@@ -9,6 +9,7 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -95,5 +96,14 @@ public class CarsBean {
         User user = entityManager.find(User.class, userId);
         user.getCars().add(car);
         car.setOwner(user);
+    }
+
+    public void deleteCarsByIds(Collection<Long> carIds){
+        LOG.info("deleteCarsByIds");
+
+        for(Long carId : carIds){
+            Car car = entityManager.find(Car.class, carId);
+            entityManager.remove(car);
+        }
     }
 }

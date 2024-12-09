@@ -12,6 +12,9 @@
             <c:forEach var="car" items="${cars}">
                 <div class="row">
                     <div class="col">
+                        <input type="checkbox" name="car_ids" value="${car.id}"/>
+                    </div>
+                    <div class="col">
                         ${car.licensePlate}
                     </div>
                     <div class="col">
