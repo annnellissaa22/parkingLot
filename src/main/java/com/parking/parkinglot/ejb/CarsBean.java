@@ -32,9 +32,10 @@ public class CarsBean {
             throw new RuntimeException(e);
         }
     }
+
     public CarDto findById(Long id) {
         LOG.info("findById");
-        try{
+        try {
             if (id == null) {
                 LOG.warning("Provided ID is null");
                 throw new IllegalArgumentException("Car ID cannot be null");
@@ -70,7 +71,6 @@ public class CarsBean {
     }
 
 
-
     public void createCar(String licensePlate, String parkingSpot, Long userId) {
         LOG.info("createCar");
 
@@ -100,10 +100,10 @@ public class CarsBean {
         car.setOwner(user);
     }
 
-    public void deleteCarsByIds(Collection<Long> carIds){
+    public void deleteCarsByIds(Collection<Long> carIds) {
         LOG.info("deleteCarsByIds");
 
-        for(Long carId : carIds){
+        for (Long carId : carIds) {
             Car car = entityManager.find(Car.class, carId);
             entityManager.remove(car);
         }
@@ -123,9 +123,11 @@ public class CarsBean {
         photo.setCar(car);
         entityManager.persist(photo);
     }
+
     public CarPhotoDto findPhotoByCarId(Integer carId) {
         List<CarPhoto> photos = entityManager
-                .createQuery("SELECT p FROM CarPhoto p where p.car.id = :id", CarPhoto.class)
+                .createQuery(
+                        "SELECT p FROM CarPhoto p where p.car.id = :id", CarPhoto.class)
                 .setParameter("id", carId)
                 .getResultList();
         if (photos.isEmpty()) {

@@ -22,9 +22,9 @@ public class UsersBean {
     @Inject
     PasswordBean passwordBean;
 
-    public List<UserDto> findAllUsers(){
+    public List<UserDto> findAllUsers() {
         LOG.info("findAllUsers");
-        try{
+        try {
             TypedQuery<User> typedQuery = entityManager.createQuery("SELECT u FROM User u", User.class);
             List<User> users = typedQuery.getResultList();
             return copyUsersToDto(users);
@@ -33,10 +33,10 @@ public class UsersBean {
         }
     }
 
-    public List<UserDto> copyUsersToDto(List<User> users){
+    public List<UserDto> copyUsersToDto(List<User> users) {
         LOG.info("copyUsersToDto");
         List<UserDto> userDtos = new ArrayList<UserDto>();
-        for(User user : users){
+        for (User user : users) {
             UserDto userDto = new UserDto(
                     user.getId(),
                     user.getUsername(),
@@ -58,6 +58,7 @@ public class UsersBean {
         entityManager.persist(newUser);
         assignGroupsToUser(username, groups);
     }
+
     private void assignGroupsToUser(String username, Collection<String>
             groups) {
         LOG.info("assignGroupsToUser");

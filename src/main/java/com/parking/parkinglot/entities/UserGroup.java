@@ -1,6 +1,7 @@
 package com.parking.parkinglot.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class UserGroup {
@@ -13,6 +14,8 @@ public class UserGroup {
 
     private String username;
 
+    @Size(min = 3, max = 100)
+    @Column(unique = true, nullable = false, length = 100)
     public String getUserGroup() {
         return userGroup;
     }
@@ -21,6 +24,8 @@ public class UserGroup {
         this.userGroup = userGroup;
     }
 
+    @Basic
+    @Column(unique = true, nullable = false, length = 100, name = "username")
     public String getUsername() {
         return username;
     }

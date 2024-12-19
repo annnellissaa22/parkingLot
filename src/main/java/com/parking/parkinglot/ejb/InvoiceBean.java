@@ -15,7 +15,7 @@ import java.util.Set;
 @SessionScoped
 public class InvoiceBean implements Serializable {
     @PersistenceContext
-    EntityManager entityManager;
+
     Set<Long> userIds = new HashSet<>();
 
     public Set<Long> getUserIds() {

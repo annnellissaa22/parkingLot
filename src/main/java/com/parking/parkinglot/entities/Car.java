@@ -1,6 +1,8 @@
 package com.parking.parkinglot.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "cars")
@@ -10,18 +12,23 @@ public class Car {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @NotNull(message = "Owner cannot be null")
     @ManyToOne
-    @JoinColumn(name = "owner_id")
+    @JoinColumn(name = "owner_id", nullable = false)
     private User owner;
 
+    @NotNull(message = "Parking spot cannot be null")
     @Column(name = "parking_spot")
     private String parkingSpot;
 
+    @NotNull(message = "License plate cannot be null")
     @Column(name = "license_plate")
     private String licensePlate;
 
     private CarPhoto photo;
 
+    @Size(min = 3, max = 100)
+    @Column(unique = true, nullable = false, length = 100)
     public String getParkingSpot() {
         return parkingSpot;
     }
@@ -30,6 +37,8 @@ public class Car {
         this.parkingSpot = parkingSpot;
     }
 
+    @Size(min = 3, max = 100)
+    @Column(unique = true, nullable = false, length = 100)
     public String getLicensePlate() {
         return licensePlate;
     }
@@ -38,6 +47,8 @@ public class Car {
         this.licensePlate = licensePlate;
     }
 
+    @Size(min = 3, max = 100)
+    @Column(unique = true, nullable = false, length = 100)
     public Long getId() {
         return id;
     }
@@ -46,6 +57,8 @@ public class Car {
         this.id = id;
     }
 
+    @Size(min = 3, max = 100)
+    @Column(unique = true, nullable = false, length = 100)
     public User getOwner() {
         return owner;
     }
