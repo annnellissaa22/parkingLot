@@ -5,7 +5,7 @@
 
 <t:pageTemplate pageTitle="Cars">
     <h1>Cars</h1>
-    <c:if test="${pageContext.request.isUserInRole('WRITE_CARS')}">
+
     <form method="POST" actions="${pageContext.request.contextPath}/Cars">
     <a class="btn btn-primary btn-lg" aria-current="page" href="${pageContext.request.contextPath}/AddCar">Add Car</a>
     <button class="btn btn-primary btn-lg" type="submit">Delete Cars</button>
@@ -25,12 +25,21 @@
                         ${car.ownerName}
                     </div>
                     <div class="col">
+                        <img src="${pageContext.request.contextPath}/CarPhotos?id=${car.id}" width="48"/>
+                    </div>
+                    <c:if test="${pageContext.request.isUserInRole('WRITE_CARS')}">
+                        <div class="col">
+                            <a class="btn btn-secondary"
+                               href="${pageContext.request.contextPath}/AddCarPhoto?id=${car.id}" role="button">Add Photo</a>
+                        </div>
+                    <div class="col">
                         <a class="btn btn-secondary" href="${pageContext.request.contextPath}/EditCar?id=${car.id}">Edit Car</a>
                     </div>
+                    </c:if>
                 </div>
             </c:forEach>
         </div>
     </form>
-    </c:if>
+
     <h5>Free parking spots: ${numberOfFreeParkingSpots}</h5>
 </t:pageTemplate>
