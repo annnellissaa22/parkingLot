@@ -28,8 +28,10 @@ public class Cars extends HttpServlet {
 
         List<CarDto> cars = carsBean.findAllCars();
         request.setAttribute("cars", cars);
+        int totalParkingSpots = 10;
+        int numberOfFreeParkingSpots = totalParkingSpots - cars.size();
 
-        request.setAttribute("numberOfFreeParkingSpots", 10);
+        request.setAttribute("numberOfFreeParkingSpots", numberOfFreeParkingSpots);
         request.getRequestDispatcher("/WEB-INF/pages/cars/cars.jsp").forward(request, response);
     }
 

@@ -76,4 +76,34 @@ public class UsersBean {
                 .getResultList();
         return usernames;
     }
+
+    public User findUserById(Long userId) {
+        LOG.info("findUserById");
+        return entityManager.find(User.class, userId);
+    }
+
+    public void updateUserWithoutPassword(Long userId, String username, String email) {
+        LOG.info("updateUserWithoutPassword");
+        User user = entityManager.find(User.class, userId);
+        if (user != null) {
+            user.setUsername(username);
+            user.setEmail(email);
+            entityManager.merge(user);
+        } else {
+            throw new IllegalArgumentException("User not found");
+        }
+    }
+
+    public void updateUserWithPassword(Long userId, String username, String email, String password) {
+        LOG.info("updateUserWithPassword");
+        User user = entityManager.find(User.class, userId);
+        if (user != null) {
+            user.setUsername(username);
+            user.setEmail(email);
+            user.setPassword(passwordBean.convertToSha256(password));
+            entityManager.merge(user);
+        } else {
+            throw new IllegalArgumentException("User not found");
+        }
+    }
 }
