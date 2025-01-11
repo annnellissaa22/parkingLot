@@ -20,7 +20,7 @@ public class AddUser extends HttpServlet {
             response) throws ServletException, IOException {
 
         request.setAttribute("userGroups", new String[]{"READ_CARS", "WRITE_CARS",
-                "READ_USERS", "WRITE_USERS"});
+                "READ_USERS", "WRITE_USERS", "INVOICING",});
         request.getRequestDispatcher("/WEB-INF/pages/users/addUser.jsp").forward(request, response);
     }
 
